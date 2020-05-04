@@ -18,9 +18,9 @@ FSJS project 2 - List Filter and Pagination
 ***/
 
 
-let studentList = document.getElementsByClassName("student-item cf");
-//this variable contains all off the Student items for the page and their elements. I can search it by index
-console.log(studentList);
+const studentList = document.querySelector(".student-list");
+//this studentLi variable contains all off the Student List Items for the page and their elements. I can search it by index
+const studentLi = studentList.children;
 //this variable is the number of items that I wish to show on each page
 const itemsPerPage = 10;
 
@@ -42,27 +42,27 @@ const itemsPerPage = 10;
 
 //function will take in to two parameters list and page number
 function showPage(list, page) {
-  let showItem = '';
+  let showItems = '';
   //The above variable will contain the items to show on the specified page
   //set two variables for start and end index - calculate based on the input page paramenter and multiplying it by the desired number of items per page.  Ued variable for
   // items per page so that I can change it from the variable level and not the function if I need to in the future.
   let startIndex = (page * itemsPerPage) - itemsPerPage;
   let endIndex = (page * itemsPerPage);
+  //use loop to go over all items in the list parameter and determine which fall within the startIndex and endIndex parameters
   for (let i = 0; i < list.length; i++) {
-    //use loop to go over all items in the list parameter and determine which fall within the startIndex and endIndex parameters
-    //set all that fall within desired index to a display.style of inherit so they will show
-    if(list[i] >= startIndex && list[i] < endIndex) {
-      list[i].style.display = "inherit";
-      //set all items that fall outside of the desired parameter to a display style of 'none' so they will not show on the page
+    let currentStudent= list[i];
+    //set all student items that fall within desired index to a display.style of inherit so they will show
+    if( i >= startIndex && i < endIndex) {
+     currentStudent.style.display = "inherit";
+      //else set all stuend items that fall outside of the desired parameter to a display style of 'none' so they will not show on the page
     } else {
-      list[i].style.display = "none";
+      currentStudent.style.display = "none";
     }
   }
 };
-
-
-
-
+showPage();
+// showPage(studentLi, 2);
+//testing to see if function works properly
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
