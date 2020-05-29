@@ -25,6 +25,10 @@ const studentLi = studentList.children;
 const itemsPerPage = 10;
 
 
+
+
+
+
 /*** 
    Create the `showPage` function to hide all of the items in the 
    list except for the ten you want to show.
@@ -43,7 +47,7 @@ const itemsPerPage = 10;
 //function will take in to two parameters list and page number
 function showPage(list, page) {
   let showItems = '';
-  //The above variable will contain the items to show on the specified page
+  //variable will contain the items to show on the specified page
   //set two variables for start and end index - calculate based on the input page paramenter and multiplying it by the desired number of items per page.  Ued variable for
   // items per page so that I can change it from the variable level and not the function if I need to in the future.
   let startIndex = (page * itemsPerPage) - itemsPerPage;
@@ -67,14 +71,45 @@ showPage();
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
+
+
+   what do i want this to do:
+   when page loads:
+   1st show the first 10 students
+   create pagination links for every 10 students and remainder at the end
+
 ***/
 
 
 function appendPageLinks(list) {
+  //formula using math ceiling to divide list items by # per page and then rounded up to a whold number to determine total page count
+  let totalPageCount = Math.ceil(studentLi.length / itemsPerPage);
+  //Create the div to add the pagination pages to in function later
+  let paginationDiv = document.createElement("div");
+  paginationDiv.className = "pagination";
+  document.body.appendChild(pagination);
+  //create list items for Pagination 
+  let paginationListItems = document.createElement("li");
+  pagination.appendChild(paginationListItems);
+  //create element "a" for eah page and add as a child to each list item
+  let page = document.createElement("a");
+  paginationListItems.appendChild(page);
   
-
+  //for each page number create a new page button create a new pagination Li and Page
+  for(var i = 1; i <= totalPageCount; i ++) {
+    paginationButtons(i);
+ }
 }
 
 
+function paginationButtons (page) {
+  let pageButton = document.createElement('button');
+  pageButtons.innerHTML = "page";
 
+  if(currentPage === page) {
+    pageButton.classList === "active";
+  };
+  return button
+}
+appendPageLinks(studentLi)
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
